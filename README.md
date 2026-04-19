@@ -1,10 +1,40 @@
-# Vyapara Commerce
+# Vyapara — Fashion E-Commerce Platform
 
-Full-stack mini-Amazon e-commerce platform built with Django REST Framework, JWT auth, Stripe test payments, and React.
+> A futuristic, full-stack fashion e-commerce platform with a glassmorphic dark UI, AI-powered shopping, holographic product cards, and dynamic atmosphere theming.
 
-## Folder Structure
+---
 
-```text
+## ✨ Features
+
+### Frontend (React + Vite + Tailwind CSS)
+| Feature | Description |
+|---------|-------------|
+| 🃏 **Holographic 3D Cards** | Product cards physically tilt toward your cursor with a rainbow border shimmer |
+| 🔍 **AI Command Palette** | Press the search icon to open a Spotlight-style shopper — type naturally, e.g. *"minimal beach wedding outfit under $200"* |
+| 🌌 **Atmosphere Themes** | Switch between Deep Cosmos, Neon Cyberpunk, Cosmic Void, and Studio Glass |
+| 🎬 **Scroll Storytelling** | Product detail pages scroll through Design → Material → Fit → Craft narratives |
+| 🛍 **Cart Drawer** | Glassmorphic slide-in cart without leaving the page |
+| 📱 **Mobile Dock** | Floating pill-shaped bottom navigation on mobile |
+| 👆 **Snap-Scroll Cards** | Touch-swipe between product cards with magnetic snap points |
+| 🔄 **Pull-to-Refresh** | Elastic pull-down gesture with circular progress indicator on mobile |
+| 📐 **Size Selector** | XS–XXL animated size picker with glowing active state |
+| 💀 **Shimmer Skeletons** | Premium diagonal shimmer loading states mirroring real card layout |
+| 🌈 **Animated Hero** | Liquid orbiting background blobs that respond to the active atmosphere |
+
+### Backend (Django REST Framework)
+- JWT authentication (register, login, refresh, logout, profile)
+- Product catalog with search, filter, and pagination
+- Database-backed cart and cart items
+- Order management with stock deduction
+- Stripe payment intent creation and confirmation
+- Django Admin dashboard
+- SQLite (dev) / PostgreSQL (prod) support
+
+---
+
+## 🗂 Project Structure
+
+```
 Vyapara/
 ├── backend/
 │   ├── apps/
@@ -18,56 +48,42 @@ Vyapara/
 │   ├── manage.py
 │   └── requirements.txt
 ├── frontend/
-│   ├── public/
 │   ├── src/
-│   │   ├── api/
-│   │   ├── components/
-│   │   ├── context/
-│   │   ├── pages/
-│   │   └── styles/
+│   │   ├── components/     # UI components
+│   │   ├── context/        # Auth, Cart, Atmosphere contexts
+│   │   ├── hooks/          # usePullToRefresh
+│   │   ├── pages/          # Route-level pages
+│   │   ├── data/           # Mock product sections
+│   │   └── styles/         # Global CSS + shimmer animations
 │   ├── .env.example
-│   ├── package.json
-│   └── vite.config.js
+│   └── package.json
 ├── docker-compose.yml
 └── README.md
 ```
 
-## Backend Features
+---
 
-- JWT authentication with register, login, refresh, logout, and profile endpoints
-- Product catalog with pagination, search, filtering, and admin CRUD
-- Database-backed cart and cart items
-- Order creation from cart with stock deduction and history
-- Stripe payment intent creation and payment confirmation
-- Django admin for products, carts, orders, and payments
-- Basic DRF test coverage for auth, product listing, and order creation
+## 🚀 Getting Started
 
-## Frontend Features
-
-- React + Vite frontend with routed pages
-- Auth and cart state via Context API
-- Axios client with JWT attach and refresh flow
-- Product listing, detail page, cart, checkout, login/register, and orders
-- Responsive custom styling
-
-## Setup Instructions
-
-### 1. Backend setup
+### 1. Backend Setup
 
 ```bash
 cd backend
-python -m venv .venv
-source .venv/bin/activate
+python3 -m venv .venv
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 cp .env.example .env
-python manage.py migrate
-python manage.py createsuperuser
-python manage.py runserver
+python3 manage.py migrate
+python3 manage.py createsuperuser
+python3 manage.py runserver
 ```
 
-Backend runs at `http://127.0.0.1:8000`.
+Backend runs at → **http://127.0.0.1:8000**  
+Admin dashboard → **http://127.0.0.1:8000/admin/**
 
-### 2. Frontend setup
+---
+
+### 2. Frontend Setup
 
 ```bash
 cd frontend
@@ -76,115 +92,91 @@ cp .env.example .env
 npm run dev
 ```
 
-Frontend runs at `http://127.0.0.1:5173`.
+Frontend runs at → **http://localhost:5173**
 
-### 3. Stripe test mode
+---
 
-Set these before checkout works:
+### 3. Run on Phone (same WiFi)
 
-- `backend/.env`: `STRIPE_SECRET_KEY=sk_test_...`
-- `frontend/.env`: `VITE_STRIPE_PUBLISHABLE_KEY=pk_test_...`
+```bash
+npm run dev -- --host
+```
 
-Use Stripe test card `4242 4242 4242 4242`, any future date, any CVC, any ZIP.
+Then visit `http://<your-laptop-ip>:5173` on your phone. Find your IP with:
+```bash
+hostname -I
+```
 
-### 4. PostgreSQL instead of SQLite
+---
 
-Set:
+### 4. Stripe Payments (optional)
+
+Add your test keys to the `.env` files:
+
+```env
+# backend/.env
+STRIPE_SECRET_KEY=sk_test_...
+
+# frontend/.env
+VITE_STRIPE_PUBLISHABLE_KEY=pk_test_...
+```
+
+Test card: `4242 4242 4242 4242` · any future date · any CVC
+
+---
+
+### 5. PostgreSQL (production)
+
+Update `backend/.env`:
 
 ```env
 DB_ENGINE=postgres
-DB_NAME=ecommerce
+DB_NAME=vyapara
 DB_USER=postgres
-DB_PASSWORD=postgres
+DB_PASSWORD=yourpassword
 DB_HOST=localhost
 DB_PORT=5432
 ```
 
-## Example API Requests
+---
 
-### Register
+## 🎨 Atmosphere Themes
 
-```http
-POST /api/auth/register/
-Content-Type: application/json
+Click the **sun icon** in the navbar to switch themes:
 
-{
-  "username": "alice",
-  "email": "alice@example.com",
-  "first_name": "Alice",
-  "last_name": "Doe",
-  "password": "strongpass123"
-}
-```
+| Theme | Vibe |
+|-------|------|
+| 🌌 Deep Cosmos | Default — dark blue with cyan/violet blobs |
+| ⚡ Neon Cyberpunk | Magenta + green glows, aggressive borders |
+| ✦ Cosmic Void | Near-pitch black, ghost-white whispers |
+| ◻ Studio Glass | Cool ice-blue, ultra-minimal |
 
-### Login
+---
 
-```http
-POST /api/auth/login/
-Content-Type: application/json
+## 🛠 Tech Stack
 
-{
-  "username": "alice",
-  "password": "strongpass123"
-}
-```
+| Layer | Technology |
+|-------|-----------|
+| Frontend | React 18, Vite 6, Tailwind CSS, Framer Motion |
+| Backend | Django 5, Django REST Framework, SimpleJWT |
+| Database | SQLite (dev), PostgreSQL (prod) |
+| Payments | Stripe |
+| Font | Outfit (Google Fonts) |
 
-### Product list with search/filter
+---
 
-```http
-GET /api/products/?search=headphones&category=Electronics&min_price=50&max_price=300
-```
+## ☁️ Deployment
 
-### Add to cart
+| Service | Platform |
+|---------|----------|
+| Frontend | Vercel / Netlify |
+| Backend | Render / Railway |
+| Database | Supabase / Railway Postgres |
 
-```http
-POST /api/cart/items/
-Authorization: Bearer <access_token>
-Content-Type: application/json
+Set `DEBUG=False`, update `ALLOWED_HOSTS` and `CORS_ALLOWED_ORIGINS` for production.
 
-{
-  "product_id": 1,
-  "quantity": 2
-}
-```
+---
 
-### Create order
+## 📝 License
 
-```http
-POST /api/orders/
-Authorization: Bearer <access_token>
-Content-Type: application/json
-
-{
-  "shipping_address": "221B Baker Street, London"
-}
-```
-
-### Create payment intent
-
-```http
-POST /api/payments/create-intent/
-Authorization: Bearer <access_token>
-Content-Type: application/json
-
-{
-  "order_id": 1
-}
-```
-
-## Postman Testing Checklist
-
-- Register a new user
-- Login and store JWT tokens
-- Create products from admin or admin-authenticated API
-- Add and update cart items
-- Create an order from the cart
-- Create and confirm Stripe payment
-- Verify the order appears in order history
-
-## Deployment Notes
-
-- Backend can be deployed on Render or Railway
-- Frontend can be deployed on Vercel or Netlify
-- Set production `ALLOWED_HOSTS`, `CORS_ALLOWED_ORIGINS`, and Stripe keys
-- Use PostgreSQL in production
+MIT — feel free to use, fork, and build on this.
