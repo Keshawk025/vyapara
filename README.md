@@ -28,7 +28,7 @@
 </p>
 
 <p align="center">
-  🔗 <strong>Live Demo:</strong> <em>coming soon</em>
+  🔗 <strong>Live Demo:</strong> <a href="https://vyapara-k.netlify.app">vyapara-k.netlify.app</a>
 </p>
 
 <!-- Wave separator -->
