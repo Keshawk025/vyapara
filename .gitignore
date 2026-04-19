@@ -1,0 +1,43 @@
+# ── Python / Django ──────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+.Python
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+
+# Environment variables — NEVER commit these
+.env
+.env.local
+.env.*.local
+
+# ── Node / Frontend ──────────────────────────────────────
+node_modules/
+dist/
+.cache/
+
+# ── OS Files ─────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# ── IDE ──────────────────────────────────────────────────
+.vscode/
+.idea/
+*.code-workspace
+
+# ── Misc ─────────────────────────────────────────────────
+codex.code
