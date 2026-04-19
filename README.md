@@ -1,182 +1,151 @@
-# Vyapara — Fashion E-Commerce Platform
+# Vyapara — Frontend Showcase
 
-> A futuristic, full-stack fashion e-commerce platform with a glassmorphic dark UI, AI-powered shopping, holographic product cards, and dynamic atmosphere theming.
+> A premium fashion e-commerce UI built to demonstrate advanced React, animation, and interaction design skills.  
+> **This project is a frontend portfolio piece** — not a production store.
 
----
-
-## ✨ Features
-
-### Frontend (React + Vite + Tailwind CSS)
-| Feature | Description |
-|---------|-------------|
-| 🃏 **Holographic 3D Cards** | Product cards physically tilt toward your cursor with a rainbow border shimmer |
-| 🔍 **AI Command Palette** | Press the search icon to open a Spotlight-style shopper — type naturally, e.g. *"minimal beach wedding outfit under $200"* |
-| 🌌 **Atmosphere Themes** | Switch between Deep Cosmos, Neon Cyberpunk, Cosmic Void, and Studio Glass |
-| 🎬 **Scroll Storytelling** | Product detail pages scroll through Design → Material → Fit → Craft narratives |
-| 🛍 **Cart Drawer** | Glassmorphic slide-in cart without leaving the page |
-| 📱 **Mobile Dock** | Floating pill-shaped bottom navigation on mobile |
-| 👆 **Snap-Scroll Cards** | Touch-swipe between product cards with magnetic snap points |
-| 🔄 **Pull-to-Refresh** | Elastic pull-down gesture with circular progress indicator on mobile |
-| 📐 **Size Selector** | XS–XXL animated size picker with glowing active state |
-| 💀 **Shimmer Skeletons** | Premium diagonal shimmer loading states mirroring real card layout |
-| 🌈 **Animated Hero** | Liquid orbiting background blobs that respond to the active atmosphere |
-
-### Backend (Django REST Framework)
-- JWT authentication (register, login, refresh, logout, profile)
-- Product catalog with search, filter, and pagination
-- Database-backed cart and cart items
-- Order management with stock deduction
-- Stripe payment intent creation and confirmation
-- Django Admin dashboard
-- SQLite (dev) / PostgreSQL (prod) support
+🔗 **Live Demo:** _coming soon_  
+🎨 **Category:** Frontend Development · UI/UX · React · Animation
 
 ---
 
-## 🗂 Project Structure
+## 🎯 What This Demonstrates
 
-```
-Vyapara/
-├── backend/
-│   ├── apps/
-│   │   ├── cart/
-│   │   ├── orders/
-│   │   ├── payments/
-│   │   ├── products/
-│   │   └── users/
-│   ├── config/
-│   ├── .env.example
-│   ├── manage.py
-│   └── requirements.txt
-├── frontend/
-│   ├── src/
-│   │   ├── components/     # UI components
-│   │   ├── context/        # Auth, Cart, Atmosphere contexts
-│   │   ├── hooks/          # usePullToRefresh
-│   │   ├── pages/          # Route-level pages
-│   │   ├── data/           # Mock product sections
-│   │   └── styles/         # Global CSS + shimmer animations
-│   ├── .env.example
-│   └── package.json
-├── docker-compose.yml
-└── README.md
+This project was built to push the boundaries of what a React frontend can feel like — going far beyond typical CRUD UIs into the territory of high-end, interactive product experiences.
+
+| Skill Area | Implementation |
+|------------|---------------|
+| **Advanced Animation** | Framer Motion — scroll-driven storytelling, spring physics, layout animations, infinite keyframes |
+| **3D CSS + Mouse Tracking** | Holographic card tilt using `perspective`, `rotateX/Y`, and real-time mouse position math |
+| **Custom Touch Gestures** | Pull-to-refresh with elastic damping, swipe-snap scroll — no library, written from scratch |
+| **State Architecture** | React Context for Cart, Auth, and Atmosphere — clean separation of concerns |
+| **Design Systems** | Tailwind CSS utility-first with custom design tokens, shimmer animations, and glassmorphism |
+| **Performance** | `will-change`, `translateZ` for GPU compositing, lazy image loading, `useTransform` for 60fps scroll |
+| **Responsive Design** | Desktop layout + floating mobile dock + phone-accessible dev server |
+| **Component Design** | Fully reusable, isolated components with no prop drilling |
+
+---
+
+## ✨ Highlighted Features
+
+### 🃏 Holographic 3D Product Cards
+Product cards physically tilt on a 3D axis tracking your cursor in real time. The border angle rotates as the card tilts, creating a shimmering iridescent effect. Built with raw mouse math — no library.
+
+```jsx
+const rotateX = ((y - centerY) / centerY) * -12;
+const rotateY = ((x - centerX) / centerX) * 12;
+style={{ transform: `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)` }}
 ```
 
 ---
 
-## 🚀 Getting Started
-
-### 1. Backend Setup
-
-```bash
-cd backend
-python3 -m venv .venv
-source .venv/bin/activate        # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-cp .env.example .env
-python3 manage.py migrate
-python3 manage.py createsuperuser
-python3 manage.py runserver
-```
-
-Backend runs at → **http://127.0.0.1:8000**  
-Admin dashboard → **http://127.0.0.1:8000/admin/**
+### 🔍 AI Command Palette
+A Spotlight-style overlay triggered by the search icon. Users type natural language queries like *"minimal beach wedding outfit under $200"* — results cascade in with staggered motion and a live running outfit total updates on every keystroke.
 
 ---
 
-### 2. Frontend Setup
-
-```bash
-cd frontend
-npm install
-cp .env.example .env
-npm run dev
-```
-
-Frontend runs at → **http://localhost:5173**
+### 🌌 4-Mode Atmosphere Switcher
+A settings system that morphs the site's entire visual identity in real time — background gradients, animated blob colors, and border tints all transition smoothly over 1.2s when you switch themes:
+- 🌌 **Deep Cosmos** — midnight blue with cyan/violet
+- ⚡ **Neon Cyberpunk** — magenta + acid green
+- ✦ **Cosmic Void** — near-pitch black, ghost-white
+- ◻ **Studio Glass** — frosted ice-blue
 
 ---
 
-### 3. Run on Phone (same WiFi)
-
-```bash
-npm run dev -- --host
-```
-
-Then visit `http://<your-laptop-ip>:5173` on your phone. Find your IP with:
-```bash
-hostname -I
-```
+### 🎬 Scroll-Driven Product Storytelling
+On desktop, the product detail page uses `useScroll` + `useTransform` from Framer Motion to drive a parallax image that scales and rotates as you scroll. Story panels (Design → Material → Fit → Craft) fade in via `AnimatePresence` synced to scroll position.
 
 ---
 
-### 4. Stripe Payments (optional)
-
-Add your test keys to the `.env` files:
-
-```env
-# backend/.env
-STRIPE_SECRET_KEY=sk_test_...
-
-# frontend/.env
-VITE_STRIPE_PUBLISHABLE_KEY=pk_test_...
-```
-
-Test card: `4242 4242 4242 4242` · any future date · any CVC
+### 👆 Pull-to-Refresh (Custom Hook)
+A fully custom touch gesture system — no third-party library. Detects `touchstart` at `scrollY === 0`, applies elastic damping (`delta * 0.45`), renders a circular SVG progress ring, and triggers a reload when the pull threshold is crossed.
 
 ---
 
-### 5. PostgreSQL (production)
-
-Update `backend/.env`:
-
-```env
-DB_ENGINE=postgres
-DB_NAME=vyapara
-DB_USER=postgres
-DB_PASSWORD=yourpassword
-DB_HOST=localhost
-DB_PORT=5432
-```
-
----
-
-## 🎨 Atmosphere Themes
-
-Click the **sun icon** in the navbar to switch themes:
-
-| Theme | Vibe |
-|-------|------|
-| 🌌 Deep Cosmos | Default — dark blue with cyan/violet blobs |
-| ⚡ Neon Cyberpunk | Magenta + green glows, aggressive borders |
-| ✦ Cosmic Void | Near-pitch black, ghost-white whispers |
-| ◻ Studio Glass | Cool ice-blue, ultra-minimal |
+### 💀 Premium Shimmer Skeletons
+Loading states that perfectly mirror the real card's layout — same dimensions, same rounded corners — with a `105deg` diagonal shimmer sweeping across, implemented entirely in CSS `@keyframes`.
 
 ---
 
 ## 🛠 Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| Frontend | React 18, Vite 6, Tailwind CSS, Framer Motion |
-| Backend | Django 5, Django REST Framework, SimpleJWT |
-| Database | SQLite (dev), PostgreSQL (prod) |
-| Payments | Stripe |
-| Font | Outfit (Google Fonts) |
+| Tool | Purpose |
+|------|---------|
+| **React 18** | Component architecture, hooks, context |
+| **Vite 6** | Lightning-fast dev server and HMR |
+| **Tailwind CSS** | Utility-first styling + custom design tokens |
+| **Framer Motion** | Animations, gestures, layout transitions, scroll transforms |
+| **React Router v6** | Client-side routing |
+| **Outfit (Google Fonts)** | Premium geometric typeface |
+| **Axios** | API client with JWT interceptors |
 
 ---
 
-## ☁️ Deployment
+## 🚀 Running Locally
 
-| Service | Platform |
-|---------|----------|
-| Frontend | Vercel / Netlify |
-| Backend | Render / Railway |
-| Database | Supabase / Railway Postgres |
+```bash
+# Clone the repo
+git clone https://github.com/kkeshaw/Vyapara.git
+cd Vyapara
 
-Set `DEBUG=False`, update `ALLOWED_HOSTS` and `CORS_ALLOWED_ORIGINS` for production.
+# Start the backend (optional — app works in demo mode without it)
+cd backend
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+python3 manage.py migrate && python3 manage.py runserver
+
+# Start the frontend
+cd ../frontend
+npm install
+cp .env.example .env
+npm run dev
+```
+
+Open → **http://localhost:5173**
+
+### Run on Phone (same WiFi)
+```bash
+npm run dev -- --host
+# Then open http://<your-ip>:5173 on your phone
+```
+
+---
+
+## 📁 Frontend Structure
+
+```
+src/
+├── components/
+│   ├── ProductCard.jsx       # 3D holographic tilt card
+│   ├── CommandPalette.jsx    # AI search overlay
+│   ├── AtmospherePicker.jsx  # Theme switcher dropdown
+│   ├── CartDrawer.jsx        # Slide-in cart panel
+│   ├── MobileDock.jsx        # Floating phone nav
+│   ├── HeroSection.jsx       # Animated liquid blob hero
+│   ├── SkeletonCard.jsx      # Shimmer loading states
+│   └── ProductSection.jsx    # Snap-scroll card row
+├── context/
+│   ├── AtmosphereContext.jsx # Global theme state
+│   ├── CartContext.jsx       # Cart + drawer state
+│   └── AuthContext.jsx       # JWT auth state
+├── hooks/
+│   └── usePullToRefresh.js   # Custom touch gesture hook
+├── pages/
+│   └── ProductDetailPage.jsx # Scroll-driven storytelling
+└── styles/
+    └── index.css             # Design tokens, shimmer keyframes
+```
+
+---
+
+## 👤 About
+
+Built by **Keshaw** as a personal frontend skills showcase.  
+Exploring the intersection of motion design, interaction engineering, and modern React patterns.
 
 ---
 
 ## 📝 License
 
-MIT — feel free to use, fork, and build on this.
+MIT — open for inspiration, learning, or forking.
