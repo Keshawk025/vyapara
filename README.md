@@ -1,10 +1,38 @@
-# Vyapara — Frontend Showcase
+<!-- Animated top banner -->
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,20,28&height=160&section=header&text=VYAPARA&fontSize=52&fontColor=ffffff&fontAlignY=38&desc=Fashion%20E-Commerce%20Frontend%20Showcase&descSize=16&descAlignY=60&animation=fadeIn" width="100%" />
+</p>
 
-> A premium fashion e-commerce UI built to demonstrate advanced React, animation, and interaction design skills.  
-> **This project is a frontend portfolio piece** — not a production store.
+<!-- Logo -->
+<p align="center">
+  <img src="./assets/logo.svg" width="90" height="90" alt="Vyapara Logo" />
+</p>
 
-🔗 **Live Demo:** _coming soon_  
-🎨 **Category:** Frontend Development · UI/UX · React · Animation
+<!-- Typing animation -->
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Outfit&weight=600&size=22&pause=1000&color=00F6FF&center=true&vCenter=true&width=600&lines=Holographic+3D+Product+Cards;AI+Command+Palette+Search;4-Mode+Atmosphere+Theming;Scroll-Driven+Storytelling;Custom+Touch+Gesture+Hooks;Premium+Glassmorphic+Dark+UI" alt="Typing SVG" />
+</p>
+
+<!-- Tech badges -->
+<p align="center">
+  <img src="https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black" />
+  <img src="https://img.shields.io/badge/Vite-6-646CFF?style=for-the-badge&logo=vite&logoColor=white" />
+  <img src="https://img.shields.io/badge/Framer_Motion-latest-FF0055?style=for-the-badge&logo=framer&logoColor=white" />
+  <img src="https://img.shields.io/badge/TailwindCSS-3-38BDF8?style=for-the-badge&logo=tailwindcss&logoColor=white" />
+  <img src="https://img.shields.io/badge/Django-5-092E20?style=for-the-badge&logo=django&logoColor=white" />
+</p>
+
+<p align="center">
+  A premium fashion e-commerce UI built to demonstrate advanced React, animation, and interaction design skills.<br/>
+  <strong>This project is a frontend portfolio piece</strong> — not a production store.
+</p>
+
+<p align="center">
+  🔗 <strong>Live Demo:</strong> <em>coming soon</em>
+</p>
+
+<!-- Wave separator -->
+<img src="https://capsule-render.vercel.app/api?type=soft&color=gradient&customColorList=12,20,28&height=40&section=header" width="100%" />
 
 ---
 
@@ -149,3 +177,6 @@ Exploring the intersection of motion design, interaction engineering, and modern
 ## 📝 License
 
 MIT — open for inspiration, learning, or forking.
+
+<!-- Animated bottom wave -->
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,20,28&height=120&section=footer" width="100%" />
